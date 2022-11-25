@@ -12,4 +12,5 @@ const Footer = () => (
     <p className="contact">Contact us</p>
   </div>
 )
+
 export default Footer

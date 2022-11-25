@@ -107,7 +107,7 @@ class MovieDetails extends Component {
           className="failure-img"
           alt="failure view"
         />
-        <p className="fail-text">Something went wrong. Please try agin</p>
+        <p className="fail-text">Something went wrong. Please try again</p>
         <button
           type="button"
           onClick={this.tryAgainMoviesData}
@@ -137,7 +137,7 @@ class MovieDetails extends Component {
     } = movieDetailsList
     const inHours = Math.floor(runtime / 60)
     const inMinutes = runtime % 60
-    const movieTime = `${inHours}h ${inMinutes}m`
+    const movieTime = `${inHours}h${inMinutes}m`
     const certificateName = adult ? 'A' : 'U/A'
     const releaseYear = format(new Date(releaseDate), 'yyyy')
     const releasedDateFormat = format(new Date(releaseDate), 'do MMMM yyyy')
@@ -183,6 +183,7 @@ class MovieDetails extends Component {
             <div className="info">
               <h1 className="info-heading">Rating Count</h1>
               <p className="info-items">{voteCount}</p>
+
               <h1 className="info-heading">Rating Averages</h1>
               <p className="info-items">{voteAverage}</p>
             </div>
@@ -222,7 +223,7 @@ class MovieDetails extends Component {
   }
 
   render() {
-    return <div>{this.renderViews()}</div>
+    return <div className="bg-container">{this.renderViews()}</div>
   }
 }
 const AvailableLanguages = props => {

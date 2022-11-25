@@ -5,7 +5,7 @@ import Home from './components/Home'
 import MovieDetails from './components/MovieDetails'
 import Popular from './components/Popular'
 import Profile from './components/Profile'
-import Search from './components/Search'
+import SearchRoute from './components/Search'
 import NotFound from './components/NotFound'
 import './App.css'
 
@@ -17,7 +17,7 @@ const App = () => (
       <ProtectedRoute exact path="/movies/:id" component={MovieDetails} />
       <ProtectedRoute exact path="/popular" component={Popular} />
       <ProtectedRoute exact path="/account" component={Profile} />
-      <ProtectedRoute exact path="/search" component={Search} />
+      <ProtectedRoute exact path="/search" component={SearchRoute} />
       <Route component={NotFound} />
     </Switch>
   </div>

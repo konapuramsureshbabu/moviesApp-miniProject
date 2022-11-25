@@ -6,9 +6,9 @@ const MovieItems = props => {
   const {posterPath, id, title} = eachMovie
   return (
     <Link to={`/movies/${id}`}>
-      <li>
+      <ul>
         <img className="popular-img" src={posterPath} alt={title} />
-      </li>
+      </ul>
     </Link>
   )
 }

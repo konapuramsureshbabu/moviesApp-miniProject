@@ -1,6 +1,9 @@
 import Cookies from 'js-cookie'
+import Header from '../Header'
 import Footer from '../Footer'
 import './index.css'
+
+// const activeAccount = true
 
 const Profile = props => {
   const onClickLogout = () => {
@@ -10,11 +13,12 @@ const Profile = props => {
   }
   return (
     <>
+      <Header />
       <div className="profile-page">
         <h1 className="pro-head">Account</h1>
         <hr className="hr-line" />
         <div className="member-ship-details">
-          <p className="member-text">Member ship</p>
+          <p className="member-ship-text">Member ship</p>
           <div className="user-details">
             <p className="user">Rahul@gamil.com</p>
             <p className="pass">
@@ -24,14 +28,16 @@ const Profile = props => {
         </div>
         <hr className="hr-line" />
         <div className="plan-details">
-          <p className="plan-text">Plan details</p>
+          <p className="member-ship-text">Plan details</p>
           <p className="plan-text">Premium</p>
           <p className="plan-text">Ultra HD</p>
         </div>
         <hr className="hr-line" />
-        <button type="button" className="logout-btn" onClick={onClickLogout}>
-          Logout
-        </button>
+        <div className="button-container">
+          <button type="button" className="logout-btn" onClick={onClickLogout}>
+            Logout
+          </button>
+        </div>
       </div>
       <Footer />
     </>

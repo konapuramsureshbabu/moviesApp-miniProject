@@ -4,6 +4,7 @@ import Slider from 'react-slick'
 
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
+import Footer from '../Footer'
 import HomeMovieItem from '../HomeMovieItem'
 
 import './index.css'
@@ -49,7 +50,7 @@ const renderOriginalMoviesConst = {
   failure: 'FAILURE',
   in_progress: 'IN_PROGRESS',
 }
-const isHome = true
+const activeHome = true
 
 const renderTrendingMoviesConst = {
   initial: 'INITIAL',
@@ -141,20 +142,19 @@ class Home extends Component {
 
   renderPosterSuccessView = () => {
     const {randomMovie} = this.state
+    console.log(randomMovie)
     const {title, overview, backdropPath} = randomMovie
     return (
       <div
         style={{backgroundImage: `url(${backdropPath})`}}
-        className="home-page"
+        className="home-page home-movie-page"
       >
-        <Header isHome={isHome} />
-        <div className="home-movie-page">
-          <h1 className="title">{title}</h1>
-          <h1 className="over-view">{overview}</h1>
-          <button type="button" className="play-btn">
-            Play
-          </button>
-        </div>
+        <h1 className="over-view">{overview}</h1>
+        <h1 className="title">{title}</h1>
+
+        <button type="button" className="play-btn">
+          Play
+        </button>
       </div>
     )
   }
@@ -162,15 +162,13 @@ class Home extends Component {
   renderOriginalsSuccessView = () => {
     const {originalMoviesList} = this.state
     return (
-      <>
-        <div className="movies-list-page">
-          <Slider className="slick" {...settings}>
-            {originalMoviesList.map(each => (
-              <HomeMovieItem eachMovie={each} key={each.id} />
-            ))}
-          </Slider>
-        </div>
-      </>
+      <div className="movies-list-page">
+        <Slider className="slick" {...settings}>
+          {originalMoviesList.map(each => (
+            <HomeMovieItem eachMovie={each} key={each.id} />
+          ))}
+        </Slider>
+      </div>
     )
   }
 
@@ -190,56 +188,28 @@ class Home extends Component {
   }
 
   renderPosterFailureView = () => (
-    <>
-      <Header />
-      <div className="failure-page-container">
-        <div className="failure-page-card-1">
-          <img
-            className="warning-icon"
-            alt="failure view"
-            src="https://res.cloudinary.com/dkbxi5qts/image/upload/v1660451047/movies%20prime%20app/alert-triangle_najaul.png"
-          />
-          <p className="poster-failure-msg">
-            Something went wrong.Please try again
-          </p>
-          <button
-            className="poster-try-again-btn"
-            type="button"
-            onClick={this.getOriginalsMoviesData}
-          >
-            Try Again
-          </button>
-        </div>
+    <div className="failure-page-container">
+      <div className="failure-page-card-1">
+        <img
+          className="warning-icon"
+          alt="failure view"
+          src="https://res.cloudinary.com/dkbxi5qts/image/upload/v1660451047/movies%20prime%20app/alert-triangle_najaul.png"
+        />
+        <p className="poster-failure-msg">
+          Something went wrong. Please try again
+        </p>
+        <button
+          className="poster-try-again-btn"
+          type="button"
+          onClick={this.getOriginalsMoviesData}
+        >
+          Try Again
+        </button>
       </div>
-    </>
+    </div>
   )
 
   renderOriginalsFailureView = () => (
-    <>
-      <Header />
-      <div className="failure-page-container">
-        <div className="failure-page-card-2">
-          <img
-            className="warning-icon"
-            alt="failure view"
-            src="https://res.cloudinary.com/dkbxi5qts/image/upload/v1660451047/movies%20prime%20app/alert-triangle_najaul.png"
-          />
-          <p className="poster-failure-msg">
-            Something went wrong.Please try again
-          </p>
-          <button
-            className="poster-try-again-btn"
-            type="button"
-            onClick={this.getOriginalsMoviesData}
-          >
-            Try Again
-          </button>
-        </div>
-      </div>
-    </>
-  )
-
-  renderTrendingFailureView = () => (
     <div className="failure-page-container">
       <div className="failure-page-card-2">
         <img
@@ -248,12 +218,12 @@ class Home extends Component {
           src="https://res.cloudinary.com/dkbxi5qts/image/upload/v1660451047/movies%20prime%20app/alert-triangle_najaul.png"
         />
         <p className="poster-failure-msg">
-          Something went wrong.Please try again
+          Something went wrong. Please try again
         </p>
         <button
           className="poster-try-again-btn"
           type="button"
-          onClick={this.getTrendingMoviesData}
+          onClick={this.getOriginalsMoviesData}
         >
           Try Again
         </button>
@@ -261,21 +231,34 @@ class Home extends Component {
     </div>
   )
 
+  renderTrendingFailureView = () => (
+    <div className="failure-page-container failure-page-card-2">
+      <img
+        className="warning-icon"
+        alt="failure view"
+        src="https://res.cloudinary.com/dkbxi5qts/image/upload/v1660451047/movies%20prime%20app/alert-triangle_najaul.png"
+      />
+      <p className="poster-failure-msg">
+        Something went wrong. Please try again
+      </p>
+      <button
+        className="poster-try-again-btn"
+        type="button"
+        onClick={this.getTrendingMoviesData}
+      >
+        Try Again
+      </button>
+    </div>
+  )
+
   renderPosterLoadingView = () => (
-    <>
-      <Header />
-      <div className="failure-page-container">
-        <div className="failure-page-card-1">
-          <div
-            className="loader-container"
-            // eslint-disable-next-line react/no-unknown-property
-            testid="loader"
-          >
-            <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
-          </div>
-        </div>
-      </div>
-    </>
+    <div
+      className="loader-container"
+      // eslint-disable-next-line react/no-unknown-property
+      testid="loader"
+    >
+      <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
+    </div>
   )
 
   renderOriginalsLoadingView = () => (
@@ -336,13 +319,19 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        {this.renderPosterViews()}
-        <h1 className="trending">Trending</h1>
-        {this.renderTrendingViews()}
-        <h1 className="originals">Originals</h1>
-        {this.renderOriginalViews()}
-      </div>
+      <>
+        <div className="bg-container">
+          <Header isHome={activeHome} />
+          {this.renderPosterViews()}
+          <h1 className="trending">Trending Now</h1>
+          {this.renderTrendingViews()}
+        </div>
+        <div>
+          <h1 className="originals">Originals</h1>
+          {this.renderOriginalViews()}
+          <Footer />
+        </div>
+      </>
     )
   }
 }

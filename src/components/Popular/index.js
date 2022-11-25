@@ -13,7 +13,7 @@ const popularConst = {
   failure: 'FAILURE',
 }
 
-const isPopular = true
+const activePopular = true
 
 class Popular extends Component {
   state = {popularMoviesList: [], popularStatus: popularConst.initial}
@@ -85,7 +85,6 @@ class Popular extends Component {
             <MovieItems eachMovie={each} key={each.id} />
           ))}
         </ul>
-        <Footer />
       </>
     )
   }
@@ -106,9 +105,10 @@ class Popular extends Component {
 
   render() {
     return (
-      <div>
-        <Header isPopular={isPopular} />
+      <div className="bg-container">
+        <Header isPopular={activePopular} />
         {this.renderViews()}
+        <Footer />
       </div>
     )
   }

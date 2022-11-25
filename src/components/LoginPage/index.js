@@ -74,6 +74,7 @@ class LoginPage extends Component {
             </label>
             <input
               type="password"
+              id="passwordInput"
               value={password}
               placeholder="password"
               onChange={this.onChangePassword}
