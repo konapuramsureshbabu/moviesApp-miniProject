@@ -88,11 +88,7 @@ class MovieDetails extends Component {
   renderLoadingView = () => (
     <>
       <Header />
-      <div
-        className="loader-container"
-        // eslint-disable-next-line
-        testid="loader"
-      >
+      <div className="loader-container" testid="loader">
         <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
       </div>
     </>

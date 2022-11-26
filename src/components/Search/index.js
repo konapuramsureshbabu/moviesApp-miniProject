@@ -14,7 +14,7 @@ const searchConst = {
 
 const activeSearchRoute = true
 
-class SearchRoute extends Component {
+class Search extends Component {
   state = {
     searchStatus: searchConst.initial,
     searchResultsList: [],
@@ -45,6 +45,7 @@ class SearchRoute extends Component {
       this.setState({
         searchResultsList: convertedData,
         searchStatus: searchConst.success,
+        searchValue,
       })
     } else {
       this.setState({searchStatus: searchConst.failure})
@@ -113,9 +114,9 @@ class SearchRoute extends Component {
     switch (searchStatus) {
       case searchConst.in_progress:
         return this.renderLoadingView()
-      case searchStatus.success:
+      case searchConst.success:
         return this.renderSuccessView()
-      case searchStatus.failure:
+      case searchConst.failure:
         return this.renderFailureView()
       default:
         return null
@@ -134,4 +135,4 @@ class SearchRoute extends Component {
     )
   }
 }
-export default SearchRoute
+export default Search

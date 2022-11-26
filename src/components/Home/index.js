@@ -74,7 +74,7 @@ class Home extends Component {
   }
 
   getOriginalsMoviesData = async () => {
-    this.setState({originalMoviesStatus: renderOriginalMoviesConst.initial})
+    this.setState({originalMoviesStatus: renderOriginalMoviesConst.in_progress})
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
@@ -142,20 +142,23 @@ class Home extends Component {
 
   renderPosterSuccessView = () => {
     const {randomMovie} = this.state
-    console.log(randomMovie)
     const {title, overview, backdropPath} = randomMovie
     return (
-      <div
-        style={{backgroundImage: `url(${backdropPath})`}}
-        className="home-page home-movie-page"
-      >
-        <h1 className="over-view">{overview}</h1>
-        <h1 className="title">{title}</h1>
-
-        <button type="button" className="play-btn">
-          Play
-        </button>
-      </div>
+      <>
+        <Header activeHome={activeHome} />
+        <div
+          style={{backgroundImage: `url(${backdropPath})`}}
+          className="home-page"
+        >
+          <div className="home-movie-page">
+            <h1 className="title">{title}</h1>
+            <h1 className="over-view">{overview}</h1>
+            <button type="button" className="play-btn">
+              Play
+            </button>
+          </div>
+        </div>
+      </>
     )
   }
 
@@ -188,25 +191,28 @@ class Home extends Component {
   }
 
   renderPosterFailureView = () => (
-    <div className="failure-page-container">
-      <div className="failure-page-card-1">
-        <img
-          className="warning-icon"
-          alt="failure view"
-          src="https://res.cloudinary.com/dkbxi5qts/image/upload/v1660451047/movies%20prime%20app/alert-triangle_najaul.png"
-        />
-        <p className="poster-failure-msg">
-          Something went wrong. Please try again
-        </p>
-        <button
-          className="poster-try-again-btn"
-          type="button"
-          onClick={this.getOriginalsMoviesData}
-        >
-          Try Again
-        </button>
+    <>
+      <Header activeHome={activeHome} />
+      <div className="failure-page-container">
+        <div className="failure-page-card-1">
+          <img
+            className="warning-icon"
+            alt="failure view"
+            src="https://res.cloudinary.com/dkbxi5qts/image/upload/v1660451047/movies%20prime%20app/alert-triangle_najaul.png"
+          />
+          <p className="poster-failure-msg">
+            Something went wrong. Please try again
+          </p>
+          <button
+            className="poster-try-again-btn"
+            type="button"
+            onClick={this.getOriginalsMoviesData}
+          >
+            Try Again
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   )
 
   renderOriginalsFailureView = () => (
@@ -252,26 +258,14 @@ class Home extends Component {
   )
 
   renderPosterLoadingView = () => (
-    <div
-      className="loader-container"
-      // eslint-disable-next-line react/no-unknown-property
-      testid="loader"
-    >
+    <div className="loader-container" testid="loader">
       <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
     </div>
   )
 
   renderOriginalsLoadingView = () => (
-    <div className="failure-page-container">
-      <div className="failure-page-card-2">
-        <div
-          className="loader-container"
-          // eslint-disable-next-line react/no-unknown-property
-          testid="loader"
-        >
-          <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
-        </div>
-      </div>
+    <div className="loader-container" testid="loader">
+      <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
     </div>
   )
 
@@ -320,17 +314,12 @@ class Home extends Component {
   render() {
     return (
       <>
-        <div className="bg-container">
-          <Header isHome={activeHome} />
-          {this.renderPosterViews()}
-          <h1 className="trending">Trending Now</h1>
-          {this.renderTrendingViews()}
-        </div>
-        <div>
-          <h1 className="originals">Originals</h1>
-          {this.renderOriginalViews()}
-          <Footer />
-        </div>
+        {this.renderPosterViews()}
+        <h1 className="trending">Trending Now</h1>
+        {this.renderTrendingViews()}
+        <h1 className="originals">Originals</h1>
+        {this.renderOriginalViews()}
+        <Footer />
       </>
     )
   }

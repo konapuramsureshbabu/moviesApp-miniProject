@@ -21,9 +21,9 @@ class Header extends Component {
   }
 
   onSearch = () => {
-    const {getSearchResultsData} = this.props
+    const {getSearchResultsData, activeSearchRoute} = this.props
     const {searchValue} = this.state
-    if (searchValue !== '') {
+    if (searchValue !== '' && activeSearchRoute) {
       getSearchResultsData(searchValue)
     }
   }
