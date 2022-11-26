@@ -630,3 +630,4 @@ If you complete the main features of the project you can try out the below featu
 # mini-project-part-3
 # moviesApp-miniProject
 # moviesApp-miniProject
+# moviesApp-miniProject
