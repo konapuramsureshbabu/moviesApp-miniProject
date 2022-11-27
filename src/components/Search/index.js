@@ -38,7 +38,7 @@ class Search extends Component {
       const data = await response.json()
       const convertedData = data.results.map(each => ({
         backdropPath: each.backdrop_path,
-        posterPath: each.posterPath,
+        posterPath: each.poster_path,
         title: each.title,
         id: each.id,
       }))
@@ -53,8 +53,8 @@ class Search extends Component {
   }
 
   renderSuccessView = () => {
-    const {searchResultsList} = this.state
-    return searchResultsList.length > 0 ? (
+    const {searchResultsList, searchValue} = this.state
+    return searchResultsList.length > 0 && searchValue !== '' ? (
       <ul className="search-items">
         {searchResultsList.map(each => (
           <MovieItems eachMovie={each} key={each.id} />
@@ -67,7 +67,7 @@ class Search extends Component {
 
   renderNoResultsView = () => {
     const {searchValue} = this.state
-    return (
+    return searchValue !== '' ? (
       <div className="no-results-view">
         <img
           src="https://res.cloudinary.com/dkbxi5qts/image/upload/v1660153718/movies%20prime%20app/No_Views_awtv8d.svg"
@@ -78,6 +78,8 @@ class Search extends Component {
           Your search for {searchValue} did not find any matches.
         </p>
       </div>
+    ) : (
+      this.renderLoadingView()
     )
   }
 

@@ -86,7 +86,6 @@ class Popular extends Component {
             <MovieItems eachMovie={each} key={each.id} />
           ))}
         </ul>
-        <Footer />
       </>
     )
   }
@@ -106,7 +105,12 @@ class Popular extends Component {
   }
 
   render() {
-    return <>{this.renderViews()}</>
+    return (
+      <>
+        {this.renderViews()}
+        <Footer />
+      </>
+    )
   }
 }
 export default Popular

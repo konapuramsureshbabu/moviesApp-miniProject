@@ -162,19 +162,11 @@ class MovieDetails extends Component {
           <div className="movie-info">
             <div className="info">
               <h1 className="info-heading">Genres</h1>
-              <ul className="list-items">
-                {genres.map(each => (
-                  <Genres eachItem={each} key={each.id} />
-                ))}
-              </ul>
+              <Genres genres={genres} key={genres.id} />
             </div>
             <div className="info">
               <h1 className="info-heading">Audio Available</h1>
-              <ul className="list-items">
-                {spokenLanguages.map(each => (
-                  <AvailableLanguages eachItem={each} key={each.id} />
-                ))}
-              </ul>
+              <AvailableLanguages spokenLanguages={spokenLanguages} />
             </div>
             <div className="info">
               <h1 className="info-heading">Rating Count</h1>
@@ -222,23 +214,30 @@ class MovieDetails extends Component {
     return <div className="bg-container">{this.renderViews()}</div>
   }
 }
-const AvailableLanguages = props => {
-  const {eachItem} = props
-  const {englishName} = eachItem
+
+const Genres = props => {
+  const {genres} = props
   return (
-    <li className="items">
-      <p>{englishName}</p>
-    </li>
+    <ul>
+      {genres.map(each => (
+        <li className="items">
+          <p>{each.name}</p>
+        </li>
+      ))}
+    </ul>
   )
 }
 
-const Genres = props => {
-  const {eachItem} = props
-  const {name} = eachItem
+const AvailableLanguages = props => {
+  const {spokenLanguages} = props
   return (
-    <li className="items">
-      <p>{name}</p>
-    </li>
+    <ul>
+      {spokenLanguages.map(each => (
+        <li className="items">
+          <p>{each.englishName}</p>
+        </li>
+      ))}
+    </ul>
   )
 }
 export default MovieDetails
