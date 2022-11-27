@@ -140,11 +140,13 @@ class MovieDetails extends Component {
 
     return (
       <>
+        <Header />
         <div
           className="movie-details-container"
-          style={{backgroundImage: `url(${backdropPath})`}}
+          style={{
+            backgroundImage: `url(${backdropPath})`,
+          }}
         >
-          <Header />
           <div className="movie-details-card">
             <h1 className="title">{title}</h1>
             <div className="more-details">
@@ -218,9 +220,9 @@ class MovieDetails extends Component {
 const Genres = props => {
   const {genres} = props
   return (
-    <ul>
+    <ul className="items">
       {genres.map(each => (
-        <li className="items">
+        <li>
           <p>{each.name}</p>
         </li>
       ))}

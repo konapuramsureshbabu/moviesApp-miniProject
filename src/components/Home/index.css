@@ -6,6 +6,7 @@ body {
 .home-page {
   background-size: cover;
   min-height: 60vh;
+  width: 100%;
 }
 .home-movie-page {
   padding-left: 150px;
@@ -23,6 +24,7 @@ body {
     #131313 98%,
     #131313 108%
   );
+  background-size: cover;
 }
 .title {
   font-family: 'Roboto';
@@ -59,11 +61,15 @@ body {
 }
 .slick-prev:before,
 .slick-next:before {
-  color: #171f46;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
 }
 .slick {
   margin-bottom: 20px;
   padding: 0px;
+  margin-left: 30px;
+  margin-right: 20px;
 }
 .failure-page-container {
   padding-left: 32px;

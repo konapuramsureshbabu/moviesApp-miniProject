@@ -75,14 +75,12 @@ class Header extends Component {
               />
             )}
             <Link to="/search">
-              <button
+              <HiOutlineSearch
+                className={(searchIcon, searchButton)}
                 onClick={this.onSearch}
                 type="button"
-                className={searchButton}
                 testid="searchButton"
-              >
-                <HiOutlineSearch className={searchIcon} />
-              </button>
+              />
             </Link>
             <Link to="/account">
               <img
@@ -100,7 +98,7 @@ class Header extends Component {
             </button>
           </div>
         </div>
-        <nav className="show">
+        <nav className=" show">
           {activeFullMenu && (
             <ul className="show-menu">
               <Link to="/">
