@@ -21,10 +21,6 @@ class Search extends Component {
     searchValue: '',
   }
 
-  componentDidMount() {
-    this.getSearchResultsData()
-  }
-
   getSearchResultsData = async searchValue => {
     this.setState({searchStatus: searchConst.in_progress})
     const jwtToken = Cookies.get('jwt_token')
